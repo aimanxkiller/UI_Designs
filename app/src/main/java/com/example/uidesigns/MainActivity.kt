@@ -20,22 +20,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        progressBar()
+
+        lifecycleScope.launch(Dispatchers.Main){
+            delay(5000)
+            val intent = Intent(this@MainActivity,LanguageActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun progressBar(){
         val bar = binding.progressBar
         bar.max = 1000
         val currentProgress = 1000
 
-
         ObjectAnimator.ofInt(bar,"progress",currentProgress)
             .setDuration(3000).start()
-
-        lifecycleScope.launch(Dispatchers.Main){
-
-            delay(5000)
-
-            val intent = Intent(this@MainActivity,LoginActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
 }

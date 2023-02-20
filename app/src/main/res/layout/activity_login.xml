@@ -74,10 +74,8 @@
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:hint="Enter your password here"
-
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
-
             android:background="@drawable/button_custom_clear"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
@@ -86,7 +84,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                app:boxBackgroundMode="none"
                 android:background="@color/transparent"
                 app:backgroundTint="@null" />
         </com.google.android.material.textfield.TextInputLayout>

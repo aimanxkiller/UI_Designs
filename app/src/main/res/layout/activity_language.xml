@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonArabic"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="ARABIC"
@@ -45,10 +45,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button1" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonEnglish" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonEnglish"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="ENGLISH"
@@ -56,7 +56,7 @@
             android:background="@drawable/button_custom_color"
             app:backgroundTint="@null"
 
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/buttonArabic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
