@@ -8,7 +8,6 @@
     android:padding="15dp"
     tools:context=".LanguageActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -38,7 +37,6 @@
             android:layout_height="60dp"
             android:text="ARABIC"
             android:textColor="@color/black"
-
             android:background="@drawable/button_custom_clear"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,10 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="ENGLISH"
-
             android:background="@drawable/button_custom_color"
             app:backgroundTint="@null"
-
             app:layout_constraintBottom_toTopOf="@+id/buttonArabic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
