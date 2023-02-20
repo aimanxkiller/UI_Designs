@@ -20,10 +20,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Setting up progress bar (Fake loading currently)
         progressBar()
 
+        //Delaying to launch next activity awaiting progress bar
         lifecycleScope.launch(Dispatchers.Main){
-            delay(5000)
+            delay(4000)
             val intent = Intent(this@MainActivity,LanguageActivity::class.java)
             startActivity(intent)
         }
