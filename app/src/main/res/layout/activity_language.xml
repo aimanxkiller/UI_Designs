@@ -37,7 +37,7 @@
             android:layout_height="60dp"
             android:text="ARABIC"
             android:textColor="@color/black"
-            android:background="@drawable/button_custom_clear"
+            android:background="@drawable/arrow_circle_transparent"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="ENGLISH"
-            android:background="@drawable/button_custom_color"
+            android:background="@drawable/arrow_circle"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toTopOf="@+id/buttonArabic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="15dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
