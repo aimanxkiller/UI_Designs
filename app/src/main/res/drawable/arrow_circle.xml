@@ -3,25 +3,26 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:right="10dp"
+                android:right="20dp"
+                android:top="15dp"
+                android:bottom="15dp"
                 />
         <solid android:color="@color/purplelight"/>
-            <corners android:radius="10dp"/>
+            <corners android:radius="10px"/>
         </shape>
     </item>
     <item
         android:gravity="center|end"
-        android:width="35dp"
-        android:height="35dp">
+        android:width="30dp"
+        android:height="30dp">
         <shape
-            android:padding="16dp"
             android:shape="oval">
             <solid android:color="#67237C" />
         </shape>
     </item>
     <item android:drawable="@drawable/ic_baseline_arrow_forward_24"
         android:gravity="center|end"
-        android:width="35dp"
-        android:height="35dp"
+        android:width="30dp"
+        android:height="30dp"
         />
 </layer-list>

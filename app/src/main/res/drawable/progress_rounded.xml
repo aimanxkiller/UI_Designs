@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="8dp"/>
+            <corners android:radius="5dp"/>
             <solid android:color="@color/offwhite2"/>
         </shape>
     </item>
@@ -13,8 +13,11 @@
         android:right="2dp">
         <scale android:scaleWidth="100%">
             <shape>
-                <corners android:radius="8dp"/>
-                <solid android:color="@color/purple_200"/>
+                <corners android:radius="5dp"/>
+                <gradient
+                    android:startColor="#782B90"
+                    android:endColor="#D598E8"
+                    android:angle="0"/>
             </shape>
         </scale>
     </item>

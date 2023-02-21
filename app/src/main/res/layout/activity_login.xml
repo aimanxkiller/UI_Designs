@@ -12,17 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:textSize="25sp"
-        android:textColor="@color/black"
         android:fontFamily="@font/poppins_bold"
         android:text="Let's Start with Sign In"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
+        android:layout_width="315dp"
         android:layout_height="386dp"
         android:background="@drawable/background_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,8 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingVertical="5dp"
-        android:paddingHorizontal="25dp">
-
+        android:paddingHorizontal="20dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -44,13 +42,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"
             android:textStyle="bold"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputUsername" />
 
@@ -102,10 +99,11 @@
 
         <Button
             android:id="@+id/buttonSignIn"
-            android:layout_width="match_parent"
+            android:layout_width="275dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:text="Sign in"
+            android:textSize="16sp"
             android:background="@drawable/button_custom_color"
             app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
