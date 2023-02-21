@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="offwhite">#FAFAFA</color>
-    <color name="offwhite2">#D8D8D8</color>
+    <color name="offwhite2">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="purplelight">#782B90</color>
 </resources>
