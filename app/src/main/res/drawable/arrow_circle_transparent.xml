@@ -8,7 +8,7 @@
                 android:bottom="15dp"
                 />
             <stroke
-                android:color="@color/black"
+                android:color="#2B2B40"
                 android:width="2dp" />
             <corners android:radius="10px"/>
         </shape>
@@ -17,13 +17,6 @@
         android:gravity="center|end"
         android:width="30dp"
         android:height="30dp">
-        <shape
-            android:shape="oval">
-            <solid android:color="@color/black" />
-        </shape>
+        <bitmap android:src="@drawable/arrow_icon_circle_black"/>
     </item>
-    <item android:drawable="@drawable/ic_baseline_arrow_forward_24"
-        android:gravity="center|end"
-        android:width="30dp"
-        android:height="30dp" />
 </layer-list>

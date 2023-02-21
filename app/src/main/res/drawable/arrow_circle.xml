@@ -15,14 +15,6 @@
         android:gravity="center|end"
         android:width="30dp"
         android:height="30dp">
-        <shape
-            android:shape="oval">
-            <solid android:color="#67237C" />
-        </shape>
+        <bitmap android:src="@drawable/arrow_icon_circle"/>
     </item>
-    <item android:drawable="@drawable/ic_baseline_arrow_forward_24"
-        android:gravity="center|end"
-        android:width="30dp"
-        android:height="30dp"
-        />
 </layer-list>
