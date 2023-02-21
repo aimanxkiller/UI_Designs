@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_vector"
-    android:padding="15dp"
+    android:padding="25dp"
     tools:context=".LanguageActivity">
 
     <TextView
@@ -17,51 +17,56 @@
         android:textColor="#2B2B40"
         android:layout_marginBottom="30dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2" />
+        app:layout_constraintBottom_toTopOf="@+id/cardViewLanguage"
+        app:layout_constraintStart_toStartOf="@+id/cardViewLanguage" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="315dp"
-        android:layout_height="195dp"
-        android:paddingVertical="30dp"
-        android:paddingHorizontal="20dp"
-        android:background="@drawable/background_rounded"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="30dp"
+            android:paddingHorizontal="20dp">
 
-        <Button
-            android:id="@+id/buttonArabic"
-            android:layout_width="275dp"
-            android:layout_height="60dp"
-            android:background="@drawable/arrow_circle_transparent"
-            android:text="ARABIC"
-            android:textSize="16sp"
-            android:textColor="#2B2B40"
-            android:textStyle="bold"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/buttonArabic"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/arrow_circle_transparent"
+                android:text="ARABIC"
+                android:textSize="16sp"
+                android:textColor="#2B2B40"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/buttonEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/arrow_circle"
+                android:text="ENGLISH"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toTopOf="@+id/buttonArabic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/buttonEnglish"
-            android:layout_width="275dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/arrow_circle"
-            android:text="ENGLISH"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toTopOf="@+id/buttonArabic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

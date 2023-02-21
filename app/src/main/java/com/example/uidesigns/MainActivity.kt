@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         //Delaying to launch next activity awaiting progress bar
         lifecycleScope.launch(Dispatchers.Main){
-            delay(4000)
+            delay(3500)
             val intent = Intent(this@MainActivity,LanguageActivity::class.java)
             startActivity(intent)
             finish()
@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun progressBar(){
         val bar = binding.progressBar
-        bar.max = 1000
-        val currentProgress = 1000
+        bar.max = 10000
+        val currentProgress = 9000
 
         ObjectAnimator.ofInt(bar,"progress",currentProgress)
             .setDuration(3000).start()
