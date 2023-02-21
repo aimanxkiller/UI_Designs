@@ -44,6 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +71,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
+            android:paddingHorizontal="8dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:hint="Enter your password here"
