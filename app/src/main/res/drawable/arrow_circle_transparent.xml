@@ -2,6 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
+            <padding
+                android:right="10dp"
+                />
             <stroke
                 android:color="@color/black"
                 android:width="2dp" />
@@ -21,6 +24,5 @@
     <item android:drawable="@drawable/ic_baseline_arrow_forward_24"
         android:gravity="center|end"
         android:width="35dp"
-        android:height="35dp"
-        />
+        android:height="35dp" />
 </layer-list>
