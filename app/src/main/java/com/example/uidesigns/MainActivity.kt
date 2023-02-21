@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             delay(4000)
             val intent = Intent(this@MainActivity,LanguageActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }

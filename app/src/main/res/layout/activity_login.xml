@@ -51,10 +51,10 @@
             android:textStyle="bold"
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputUsername" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/textInputUsername"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordInput"
+                android:id="@+id/textInputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
@@ -88,7 +88,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Remember me"
@@ -98,17 +98,16 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonSignIn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:text="Sign in"
             android:background="@drawable/button_custom_color"
             app:backgroundTint="@null"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/checkRemember" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
