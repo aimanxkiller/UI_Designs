@@ -1,5 +1,6 @@
-package com.example.uidesigns
+package com.example.uidesigns.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.uidesigns.databinding.ActivityLoginBinding
@@ -14,6 +15,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.buttonSignIn.setOnClickListener {
+            val intent = Intent(this,MainMenuActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 }

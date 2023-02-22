@@ -1,4 +1,4 @@
-package com.example.uidesigns
+package com.example.uidesigns.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +22,7 @@ class LanguageActivity : AppCompatActivity() {
     }
 
     private fun toNextActivity(){
-        val intent = Intent(this,LoginActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 

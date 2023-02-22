@@ -1,4 +1,4 @@
-package com.example.uidesigns
+package com.example.uidesigns.ui
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //Delaying to launch next activity awaiting progress bar
         lifecycleScope.launch(Dispatchers.Main){
             delay(3500)
-            val intent = Intent(this@MainActivity,LanguageActivity::class.java)
+            val intent = Intent(this@MainActivity, LanguageActivity::class.java)
             startActivity(intent)
             finish()
         }
