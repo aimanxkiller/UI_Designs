@@ -66,35 +66,37 @@
                 android:id="@+id/textInputUsername"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:inputType="textPersonName"
-                android:hint="Username"
+                android:layout_marginTop="5dp"
                 android:autofillHints="name"
                 android:background="@drawable/button_custom_clear"
+                android:hint="Username"
+                android:inputType="textPersonName"
                 android:paddingVertical="10dp"
-                android:paddingStart="15dp"
-                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editTextTextPassword"
                 android:layout_width="match_parent"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="5dp"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/black"
                 android:background="@drawable/button_custom_clear"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3">
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/black">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="Enter Password Here"
                     android:id="@+id/textInputPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword"
                     android:background="@color/transparent"
+                    android:hint="Enter Password Here"
+                    android:inputType="textPassword"
                     app:backgroundTint="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
