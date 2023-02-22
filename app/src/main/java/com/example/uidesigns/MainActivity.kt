@@ -38,8 +38,11 @@ class MainActivity : AppCompatActivity() {
         bar.max = 10000
         val currentProgress = 9000
 
-        ObjectAnimator.ofInt(bar,"progress",currentProgress)
-            .setDuration(3000).start()
+        ObjectAnimator.ofInt(bar,
+            "progress",
+            currentProgress)
+            .setDuration(3000)
+            .start()
     }
 
 }

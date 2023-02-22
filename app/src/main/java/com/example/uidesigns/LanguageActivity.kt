@@ -16,12 +16,8 @@ class LanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //Temp buttons to go to login activity
-        binding.buttonArabic.setOnClickListener {
-            toNextActivity()
-        }
-        binding.buttonEnglish.setOnClickListener {
-            toNextActivity()
-        }
+        binding.buttonArabic.setOnClickListener { toNextActivity() }
+        binding.buttonEnglish.setOnClickListener { toNextActivity() }
 
     }
 
