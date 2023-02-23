@@ -7,7 +7,7 @@
                 android:top="15dp"
                 android:bottom="15dp"
                 />
-            <solid android:color="@color/purple_light"/>
+            <solid android:color="#782B90"/>
             <corners android:radius="10dp"/>
         </shape>
     </item>
