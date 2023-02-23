@@ -17,6 +17,20 @@ class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>
         this.items = data
     }
 
+    class MyViewHolder(view:View):RecyclerView.ViewHolder(view) {
+        val title:TextView = itemView.findViewById(R.id.textTaskTitle)
+        val type:TextView = itemView.findViewById(R.id.textTaskType)
+
+        fun bind(data:TaskModel){
+            title.text = data.task_title
+            when(data.type){
+                1 ->{type.text = "Daily" }
+                2 ->{type.text = "Weekly"}
+                3 ->{type.text = "Monthly"}
+            }
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
             .inflate(R.layout.rows_item,parent,false)
@@ -57,18 +71,6 @@ class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>
         return items.size
     }
 
-    class MyViewHolder(view:View):RecyclerView.ViewHolder(view) {
-        val title:TextView = itemView.findViewById(R.id.textTaskTitle)
-        val type:TextView = itemView.findViewById(R.id.textTaskType)
 
-        fun bind(data:TaskModel){
-            title.text = data.task_title
-            when(data.type){
-                1 ->{type.text = "Daily" }
-                2 ->{type.text = "Weekly"}
-                3 ->{type.text = "Monthly"}
-            }
-        }
-    }
 
 }

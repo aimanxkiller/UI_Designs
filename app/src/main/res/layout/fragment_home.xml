@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weekly Visit Plan"
+                android:fontFamily="@font/poppins_semi_bold"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 android:textColor="@color/black"
                 />
             <TextView
@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weekly Visit Plan"
+                android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
                 android:textColor="#802B2B40"
                 />
@@ -63,12 +64,12 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingVertical="15dp"
+        android:fontFamily="@font/poppins_semi_bold"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="Set New Schedule"
         android:textSize="16sp"
-        android:textAlignment="textStart"
+        android:gravity="start|center_vertical"
         android:textAllCaps="false"
         app:backgroundTint="@null"
         android:background="@drawable/plus_circle_button"
