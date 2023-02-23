@@ -31,7 +31,6 @@ class MainMenuActivity : AppCompatActivity() {
             true
         }
 
-
     }
 
     private fun replaceFrags(fragment:Fragment){
