@@ -16,23 +16,23 @@ class MainMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //replacing default fragment to home view
         replaceFrags(Home())
 
+        //Setting navigation based on bottom nav bar replacing fragment accordingly
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFrags(Home())
                 R.id.calendar -> replaceFrags(Calendar())
                 R.id.history -> replaceFrags(History())
                 R.id.profile -> replaceFrags(Profile())
-
-                else ->{
-                }
             }
             true
         }
 
     }
 
+    //function to replace fragments
     private fun replaceFrags(fragment:Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()

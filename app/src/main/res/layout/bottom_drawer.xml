@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_drawer_background"
+    android:backgroundTint="@null"
+    android:paddingHorizontal="40dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET NEW SCHEDULE"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        android:includeFontPadding="false"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Select Distributor"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:includeFontPadding="false"
+        />
+    <Spinner
+        android:id="@+id/spinner_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:backgroundTint="@null"
+        android:background="@android:drawable/btn_dropdown"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Select Date"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:includeFontPadding="false"
+        />
+    <EditText
+        android:id="@+id/date_selection"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/calendar_selection_bck"
+        android:paddingHorizontal="20dp"
+        android:hint="Select Date"
+        android:inputType="date"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_marginBottom="20dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button_custom_color"
+        app:backgroundTint="@null"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:includeFontPadding="false"
+        />
+
+</LinearLayout>
