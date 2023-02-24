@@ -116,6 +116,7 @@ class Home : Fragment() {
             "Distributor 4","Distributor 5","Distributor 6"
         )
         val arrayAdapter=ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item,x)
+
         spinner.adapter=arrayAdapter
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
@@ -126,12 +127,11 @@ class Home : Fragment() {
             ) {
                 //place selection here
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //Do nothings
             }
-
         }
+
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation

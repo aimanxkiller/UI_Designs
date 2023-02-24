@@ -7,10 +7,10 @@
     android:background="@drawable/bottom_drawer_background"
     android:backgroundTint="@null"
     android:paddingHorizontal="40dp"
+    android:paddingVertical="20dp"
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SET NEW SCHEDULE"
@@ -34,7 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:backgroundTint="@null"
-        android:background="@android:drawable/btn_dropdown"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/spinner_clear_bg"
         />
     <TextView
         android:layout_width="match_parent"
@@ -69,6 +70,7 @@
         android:textSize="16sp"
         android:fontFamily="@font/poppins_semi_bold"
         android:includeFontPadding="false"
+        android:layout_marginBottom="10dp"
         />
 
 </LinearLayout>
