@@ -5,16 +5,13 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import java.util.Calendar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,10 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.adapter.RecyclerViewNested
+import com.example.uidesigns.adapter.SpinnerAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -39,6 +40,8 @@ class Home : Fragment() {
     private lateinit var data2:ArrayList<TaskModel>
     private lateinit var editDate:EditText
     private lateinit var spinner:Spinner
+    private lateinit var save:Button
+    private var date:LocalDate?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +109,9 @@ class Home : Fragment() {
 
         editDate = dialog.findViewById<EditText>(R.id.date_selection)
         spinner = dialog.findViewById(R.id.spinner_drawer)
+        save = dialog.findViewById(R.id.buttonSave)
 
+        //User inputs date here
         editDate.setOnClickListener {
             showDatePickerDialog()
         }
@@ -115,21 +120,21 @@ class Home : Fragment() {
             "Distributor 1","Distributor 2","Distributor 3",
             "Distributor 4","Distributor 5","Distributor 6"
         )
-        val arrayAdapter=ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item,x)
 
-        spinner.adapter=arrayAdapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                //place selection here
+        val adapter = SpinnerAdapterCheckbox(requireContext(),x)
+        spinner.adapter = adapter
+
+        save.setOnClickListener {
+
+            val x = adapter.getCheckedItems()
+            if(editDate.text.isNullOrEmpty() || x.isEmpty()){
+                Toast.makeText(requireContext(),"Please fill up date & select a distributor",Toast.LENGTH_SHORT).show()
+            }else{
+                parseDate()
+                Log.e("Test",adapter.getCheckedItems().toString())
+                Log.e("Test2",date.toString())
             }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //Do nothings
-            }
+
         }
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -140,6 +145,20 @@ class Home : Fragment() {
         dialog.show()
     }
 
+    //parsing date?
+    private fun parseDate(){
+        //Getting date here
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-M-d")
+        val dateText = editDate.text.toString()
+
+        try {
+            date= LocalDate.parse(dateText,dateFormatter)
+        }catch (e:DateTimeParseException){
+            Log.e("ErrorParse", e.toString())
+        }
+    }
+
+    //Showing date picker calendar popup
     private fun showDatePickerDialog(){
         val currentDate = Calendar.getInstance()
         val year = currentDate.get(Calendar.YEAR)
@@ -155,7 +174,6 @@ class Home : Fragment() {
 
         // show the DatePickerDialog
         datePickerDialog.show()
-
     }
 
 }

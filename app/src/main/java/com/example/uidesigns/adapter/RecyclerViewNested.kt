@@ -54,12 +54,6 @@ class RecyclerViewNested: RecyclerView.Adapter<RecyclerViewNested.MyViewHolder>(
         val mainHolder = holder.itemView
 
         holder.bind(items[position])
-
-
-
-
-
-
     }
 
     override fun getItemCount(): Int {

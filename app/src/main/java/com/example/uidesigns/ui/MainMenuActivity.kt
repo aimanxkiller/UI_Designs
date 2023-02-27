@@ -29,7 +29,6 @@ class MainMenuActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     //function to replace fragments
@@ -39,4 +38,5 @@ class MainMenuActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout,fragment)
         fragmentTransaction.commit()
     }
+
 }
