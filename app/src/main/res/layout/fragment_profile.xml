@@ -18,12 +18,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <ImageView
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:padding="8dp"
+            android:foreground="@drawable/profile_icon_background"
             android:id="@+id/imageViewProfile"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_home_24" />
+            android:src="@drawable/profile_img_placeholder"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/Circular"/>
         <TextView
             android:id="@+id/textNameUser"
             android:layout_width="wrap_content"

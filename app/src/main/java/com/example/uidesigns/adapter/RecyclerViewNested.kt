@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.model.TaskList
-import com.example.uidesigns.model.TaskModel
 
 class RecyclerViewNested: RecyclerView.Adapter<RecyclerViewNested.MyViewHolder>()  {
 
@@ -41,7 +40,6 @@ class RecyclerViewNested: RecyclerView.Adapter<RecyclerViewNested.MyViewHolder>(
                 recyclerViewAdapter.getData(data.list)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -52,11 +50,11 @@ class RecyclerViewNested: RecyclerView.Adapter<RecyclerViewNested.MyViewHolder>(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val mainHolder = holder.itemView
-
         holder.bind(items[position])
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
 }

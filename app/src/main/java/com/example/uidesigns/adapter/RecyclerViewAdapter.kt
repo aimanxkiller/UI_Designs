@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.model.TaskModel
 
-class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter():RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
     private var items = ArrayList<TaskModel>()
 
@@ -64,6 +64,9 @@ class RecyclerViewAdapter:RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>
             }
         }
 
+        mainHolder.setOnClickListener {
+            //Do stuff clicked here
+        }
         holder.bind(items[position])
     }
 
