@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -212,9 +211,10 @@ class Home : Fragment(),AdapterListener {
         datePickerDialog.show()
     }
 
-    override fun onClicked(index: Int, type: Int) {
+    override fun onClicked(data:TaskModel) {
         //set to go to Fill Up Inspection Activity
         val Intent = Intent(requireActivity(),FillUpInspectionActivity::class.java)
+        Intent.putExtra("Name",data.task_title)
         startActivity(Intent)
     }
 

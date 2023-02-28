@@ -1,6 +1,5 @@
 package com.example.uidesigns.adapter
 
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.model.TaskList
+import com.example.uidesigns.model.TaskModel
 
 interface AdapterListener{
-    fun onClicked(index:Int,type:Int)
+    fun onClicked(index: TaskModel)
 }
 
 class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
@@ -74,7 +74,10 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
         val holderTaskTitle = holder.title
         val holderType = holder.type
 
+        var dataholder:TaskModel
+
         if (position < items[0].list.size){
+            dataholder = items[0].list[position]
             when(items[0].list[position].type){
                 1->{
                     holderTaskTitle.setTextColor(ContextCompat.getColor(mainHolder.context,R.color.daily_dark))
@@ -96,6 +99,7 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
                 }
             }
         }else{
+            dataholder=items[1].list[(position - items[0].list.size)]
             when(items[1].list[(position - items[0].list.size)].type){
                 1->{
                     holderTaskTitle.setTextColor(ContextCompat.getColor(mainHolder.context,R.color.daily_dark))
@@ -120,7 +124,7 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
 
         mainHolder.setOnClickListener {
             //Do stuff clicked here
-            listener.onClicked(0,0)
+            listener.onClicked(dataholder)
         }
         holder.bind(items,position)
     }
