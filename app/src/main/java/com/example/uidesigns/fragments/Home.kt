@@ -25,10 +25,13 @@ import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.FillUpInspectionActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
+import java.util.*
 import java.util.Calendar
+import kotlin.collections.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -204,7 +207,12 @@ class Home : Fragment(),AdapterListener {
         val datePickerDialog = DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
             // set the selected date value in the EditText
             val selectedDate = "$year-${month + 1}-$dayOfMonth"
-            editDate.setText(selectedDate)
+
+            val inputDateFormat = SimpleDateFormat("yyyy-M-d", Locale.US)
+            val inputDate = inputDateFormat.parse(selectedDate)
+
+            val outputDateFormat = SimpleDateFormat("MMMM dd, yyyy",Locale.US)
+            editDate.setText(outputDateFormat.format(inputDate))
         }, year, month, day)
 
         // show the DatePickerDialog
