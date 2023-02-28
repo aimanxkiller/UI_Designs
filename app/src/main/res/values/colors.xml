@@ -17,5 +17,6 @@
     <color name="weekly_dark">#F58220</color>
     <color name="daily_light">#1A00BA00</color>
     <color name="daily_dark">#00BA00</color>
+    <color name="greyed_out">#802B2B40</color>
 
 </resources>

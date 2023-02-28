@@ -2,11 +2,13 @@ package com.example.uidesigns.fragments
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -16,10 +18,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
-import com.example.uidesigns.adapter.RecyclerViewNested
+import com.example.uidesigns.adapter.AdapterListener
+import com.example.uidesigns.adapter.RecyclerViewAdapter
 import com.example.uidesigns.adapter.SpinnerAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
+import com.example.uidesigns.ui.FillUpInspectionActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -30,10 +34,10 @@ import java.util.Calendar
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Home : Fragment() {
+class Home : Fragment(),AdapterListener {
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var recyclerViewAdapter:RecyclerViewNested
+    lateinit var recyclerViewAdapter:RecyclerViewAdapter
     lateinit var dataParent:ArrayList<TaskList>
     private lateinit var data:ArrayList<TaskModel>
     private lateinit var data2:ArrayList<TaskModel>
@@ -79,6 +83,7 @@ class Home : Fragment() {
         data.add(data2[0])
         data2.removeAt(0)
 
+
         dataParent = arrayListOf(
             TaskList(1,data),
             TaskList(2,data2)
@@ -87,16 +92,17 @@ class Home : Fragment() {
         lifecycleScope.launch(Dispatchers.IO){
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                recyclerViewAdapter = RecyclerViewNested()
+                recyclerViewAdapter = RecyclerViewAdapter(this@Home)
                 adapter = recyclerViewAdapter
                 recyclerViewAdapter.getData(dataParent)
             }
         }
 
+
+
         bottomSheet.setOnClickListener {
             showDialog()
         }
-
 
         // Inflate the layout for this fragment
         return view
@@ -204,6 +210,12 @@ class Home : Fragment() {
 
         // show the DatePickerDialog
         datePickerDialog.show()
+    }
+
+    override fun onClicked(index: Int, type: Int) {
+        //set to go to Fill Up Inspection Activity
+        val Intent = Intent(requireActivity(),FillUpInspectionActivity::class.java)
+        startActivity(Intent)
     }
 
 }
