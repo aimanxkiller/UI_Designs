@@ -41,8 +41,6 @@ class History : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_history)
 
@@ -63,6 +61,7 @@ class History : Fragment() {
             }
         }
 
+        // Inflate the layout for this fragment
         return view
     }
 }

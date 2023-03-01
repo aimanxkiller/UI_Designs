@@ -1,11 +1,22 @@
 package com.example.uidesigns.fragments
 
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
+import com.example.uidesigns.adapter.RecyclerViewAdapterCalendar
+import com.example.uidesigns.model.TaskModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,6 +27,9 @@ class Calendar : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var data:ArrayList<TaskModel>
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapterCalendar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +43,30 @@ class Calendar : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
+        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_calendar)
+
+
+        data = arrayListOf(
+            TaskModel("Task 1",3),
+            TaskModel("Task 2",2),
+            TaskModel("Task 3",1),
+            TaskModel("Task 10",1),
+            TaskModel("Task 11",1),
+        )
+
+        lifecycleScope.launch(Dispatchers.IO){
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                recyclerViewAdapter = RecyclerViewAdapterCalendar()
+                adapter = recyclerViewAdapter
+                recyclerViewAdapter.getData(data)
+            }
+        }
+
         // Inflate the layout for this fragment
-
-
-        return inflater.inflate(R.layout.fragment_calendar, container, false)
+        return view
     }
 
 }

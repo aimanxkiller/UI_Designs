@@ -17,6 +17,6 @@
         android:gravity="center|end"
         android:width="30dp"
         android:height="30dp">
-        <bitmap android:src="@android:drawable/ic_menu_today"/>
+        <bitmap android:src="@drawable/icon_calendar"/>
     </item>
 </layer-list>

@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Calendar"
     android:background="@color/off_white"
-    android:paddingHorizontal="30dp"
     >
 
     <TextView
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="40dp"
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -23,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginHorizontal="30dp"
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,12 +36,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <CalendarView
-        android:layout_marginTop="30dp"
         android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/recycler_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        tools:layout_editor_absoluteX="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

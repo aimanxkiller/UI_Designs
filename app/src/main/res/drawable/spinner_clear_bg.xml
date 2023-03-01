@@ -3,8 +3,6 @@
     <item>
         <shape android:shape="rectangle">
             <padding
-                android:right="20dp"
-                android:top="15dp"
                 android:bottom="15dp"
                 />
             <stroke
@@ -14,8 +12,10 @@
         </shape>
     </item>
     <item
-        android:gravity="center|end"
+        android:gravity="end"
         android:width="30dp"
+        android:top="15dp"
+        android:right="15dp"
         android:height="30dp">
         <bitmap android:src="@drawable/arrow_down"/>
     </item>

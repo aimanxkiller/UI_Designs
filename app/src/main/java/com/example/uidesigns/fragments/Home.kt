@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -44,7 +43,7 @@ class Home : Fragment(),AdapterListener {
     private lateinit var data:ArrayList<TaskModel>
     private lateinit var data2:ArrayList<TaskModel>
     private lateinit var editDate:EditText
-    private lateinit var spinner:Spinner
+    private lateinit var buttonDist:Button
     private lateinit var save:Button
     private var date:LocalDate?=null
 
@@ -116,7 +115,7 @@ class Home : Fragment(),AdapterListener {
 
         //stuff in dialog drawer bottom
         editDate = dialog.findViewById(R.id.date_selection)
-        spinner = dialog.findViewById(R.id.spinner_drawer)
+        buttonDist = dialog.findViewById(R.id.spinner_drawer)
         save = dialog.findViewById(R.id.buttonSave)
 
         //User inputs date here
@@ -129,10 +128,12 @@ class Home : Fragment(),AdapterListener {
             "Distributor 4","Distributor 5","Distributor 6"
         )
 
-        val adapter = SpinnerAdapterCheckbox(requireContext(),x)
-        spinner.adapter = adapter
+        //open new dialogDrawer
+        buttonDist.setOnClickListener {
+            distributorDialog()
+        }
 
-        saveButton(adapter)
+        saveButton()
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -142,21 +143,35 @@ class Home : Fragment(),AdapterListener {
 
     }
 
+    private fun distributorDialog(){
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.bottom_drawer_dist)
+
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.show()
+    }
+
+
     //save settings
-    private fun saveButton(adapter: SpinnerAdapterCheckbox) {
+    private fun saveButton() {
+
         save.setOnClickListener {
 
             //checking for stuff
-            val y = adapter.getCheckedItems()
-            if(editDate.text.isNullOrEmpty() || y.isEmpty()){
+            if(editDate.text.isNullOrEmpty()){
                 Toast.makeText(requireContext(),"Please fill up date & select a distributor",Toast.LENGTH_SHORT).show()
             }else{
-                confirmationDialog(adapter)
+                confirmationDialog()
             }
         }
     }
 
-    private fun confirmationDialog(adapter: SpinnerAdapterCheckbox) {
+    //confirmDialog
+    private fun confirmationDialog() {
 
         //show confirmation dialog
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
@@ -177,7 +192,6 @@ class Home : Fragment(),AdapterListener {
         }
         yes.setOnClickListener {
             parseDate()
-            Log.e("Test",adapter.getCheckedItems().toString())
             Log.e("Test2",date.toString())
         }
     }
@@ -185,7 +199,7 @@ class Home : Fragment(),AdapterListener {
     //parsing date?
     private fun parseDate(){
         //Getting date here
-        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-M-d")
+        val dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
         val dateText = editDate.text.toString()
 
         try {

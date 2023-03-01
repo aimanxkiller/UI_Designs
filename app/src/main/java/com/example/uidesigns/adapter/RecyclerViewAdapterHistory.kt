@@ -17,7 +17,7 @@ class RecyclerViewAdapterHistory: RecyclerView.Adapter<RecyclerViewAdapterHistor
     }
 
     class MyViewHolder(view: View):RecyclerView.ViewHolder(view) {
-        val title:TextView= itemView.findViewById(R.id.history_title)
+        private val title:TextView= itemView.findViewById(R.id.history_title)
 
         fun bind(data:ArrayList<TaskModel>,position: Int){
             title.text = data[position].task_title

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_drawer_background"
+    android:backgroundTint="@null"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET NEW SCHEDULE"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        android:includeFontPadding="false"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Select Distributor"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="14sp"
+        android:includeFontPadding="false"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_clear_bg"
+        android:orientation="vertical"
+        app:backgroundTint="@null">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginVertical="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="@string/distributorSelection"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="@drawable/line_solid" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</LinearLayout>
