@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
+import com.example.uidesigns.adapter.RecyclerViewAdapterHistory
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.model.TaskList
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,7 @@ class History : Fragment() {
     private var param2: String? = null
 
     private lateinit var data:ArrayList<TaskModel>
-
+    private lateinit var recyclerViewAdapter:RecyclerViewAdapterHistory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +57,9 @@ class History : Fragment() {
         lifecycleScope.launch(Dispatchers.IO){
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                //todo insert new adapter for history
-//                recyclerViewAdapter = BaseAdapter()
+                recyclerViewAdapter = RecyclerViewAdapterHistory()
+                adapter = recyclerViewAdapter
+                recyclerViewAdapter.getData(data)
             }
         }
 

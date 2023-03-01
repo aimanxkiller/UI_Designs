@@ -28,9 +28,7 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
         val type:TextView = itemView.findViewById(R.id.textTaskType)
         private val segment:TextView = itemView.findViewById(R.id.textView4)
 
-
         fun bind(data: ArrayList<TaskList>, position: Int){
-
             //split by segment
             when (position) {
                 0 -> {

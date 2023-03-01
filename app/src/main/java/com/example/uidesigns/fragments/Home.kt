@@ -85,12 +85,12 @@ class Home : Fragment(),AdapterListener {
         data.add(data2[0])
         data2.removeAt(0)
 
-
         dataParent = arrayListOf(
             TaskList(1,data),
             TaskList(2,data2)
         )
 
+        //Launching recyclerview
         lifecycleScope.launch(Dispatchers.IO){
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
@@ -100,8 +100,7 @@ class Home : Fragment(),AdapterListener {
             }
         }
 
-
-
+        //Button for setting new schedule
         bottomSheet.setOnClickListener {
             showDialog()
         }
