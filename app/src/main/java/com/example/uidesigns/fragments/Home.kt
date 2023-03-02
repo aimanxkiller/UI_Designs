@@ -148,7 +148,6 @@ class Home : Fragment(),AdapterListener {
 
     }
 
-
     //showing distributor list dialog selection
     private fun distributorDialog(x: List<String>) {
         dialogDistChoice = Dialog(requireContext())
@@ -173,7 +172,6 @@ class Home : Fragment(),AdapterListener {
         dialogDistChoice.window?.setGravity(Gravity.BOTTOM)
         dialogDistChoice.show()
     }
-
 
     //save settings
     private fun saveButton() {
