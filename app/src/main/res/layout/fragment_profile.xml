@@ -7,6 +7,7 @@
     android:background="@color/off_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="ContentDescription,HardcodedText"
     tools:context=".fragments.Profile">
 
     <LinearLayout
@@ -73,6 +74,7 @@
             android:paddingVertical="30dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp">
@@ -114,9 +116,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="15dp"
-                android:src="@drawable/line_2" />
+                android:src="@drawable/line_2"
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp">

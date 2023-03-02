@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="30dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    >
+    tools:ignore="ContentDescription,HardcodedText">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -20,9 +20,10 @@
             <TextView
                 android:id="@+id/dialog_title_custom"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Are you sure?"
+                android:textAlignment="center"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_semi_bold"
@@ -33,7 +34,7 @@
                 android:id="@+id/dialog_content_custom"
                 android:layout_gravity="center"
                 android:textAlignment="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="You cannot modify the schedule after saving it"
                 android:layout_marginBottom="10dp"

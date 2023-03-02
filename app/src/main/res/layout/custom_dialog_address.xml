@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="30dp"
+    tools:ignore="ContentDescription,HardcodedText"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Edit Address"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Address"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/greyed_out"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/button_custom_clear"
+                android:text="Placeholder for address"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                />
+            <Button
+                android:id="@+id/dialog_button_save_address"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                app:backgroundTint="@null"
+                android:background="@drawable/button_custom_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkRemember" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.Button
@@ -15,7 +14,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
@@ -25,15 +23,12 @@ import com.example.uidesigns.adapter.RecyclerViewAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.FillUpInspectionActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.*
 import java.util.Calendar
-import kotlin.collections.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -138,7 +133,7 @@ class Home : Fragment(),AdapterListener {
             distributorDialog(x)
         }
 
-        saveButton()
+        saveButton(dialog)
 
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -174,7 +169,7 @@ class Home : Fragment(),AdapterListener {
     }
 
     //save settings
-    private fun saveButton() {
+    private fun saveButton(dialog: Dialog) {
 
         save.setOnClickListener {
 
@@ -182,23 +177,23 @@ class Home : Fragment(),AdapterListener {
             if(editDate.text.isNullOrEmpty()){
                 Toast.makeText(requireContext(),"Please fill up date & select a distributor",Toast.LENGTH_SHORT).show()
             }else{
-                confirmationDialog()
+                confirmationDialog(dialog)
             }
         }
     }
 
     //confirmDialog
     @SuppressLint("InflateParams")
-    private fun confirmationDialog() {
+    private fun confirmationDialog(dialogParent: Dialog) {
 
         //show confirmation dialog
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
         val myDialog = Dialog(requireContext())
-
         myDialog.setContentView(dialogBinding)
 
         myDialog.setCancelable(false)
         myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         myDialog.show()
 
         //stuff in dialog yes and no
@@ -211,6 +206,9 @@ class Home : Fragment(),AdapterListener {
         yes.setOnClickListener {
             parseDate()
             Log.e("Test2",date.toString())
+            myDialog.dismiss()
+            dialogParent.dismiss()
+            Toast.makeText(requireContext(),"Saved Task",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -257,6 +255,7 @@ class Home : Fragment(),AdapterListener {
         startActivity(intent)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCheck(choices: MutableList<String>?) {
         if (choices==null){
             buttonDist.text = "Select Distributor"

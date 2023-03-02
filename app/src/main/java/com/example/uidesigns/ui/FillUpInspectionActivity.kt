@@ -1,15 +1,16 @@
 package com.example.uidesigns.ui
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.uidesigns.R
 import com.example.uidesigns.databinding.ActivityFillUpInspectionBinding
 
@@ -35,6 +36,7 @@ class FillUpInspectionActivity : AppCompatActivity() {
     }
 
     //Placeholder just for layout
+    @SuppressLint("InflateParams", "SetTextI18n")
     private fun confirmationDialog(){
 
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
@@ -44,6 +46,19 @@ class FillUpInspectionActivity : AppCompatActivity() {
 
         myDialog.setCancelable(false)
         myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        //custom margin
+        myDialog.window?.let { window ->
+            val layoutParams = window.attributes.apply {
+                // Set the width to match parent and add a horizontal margin of 20dp
+                val width = Resources.getSystem().displayMetrics.widthPixels
+                val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
+                this.width = width - (4 * margin)
+            }
+
+            window.attributes = layoutParams
+        }
+
 
         val title: TextView = myDialog.findViewById(R.id.dialog_title_custom)
         val content: TextView = myDialog.findViewById(R.id.dialog_content_custom)
