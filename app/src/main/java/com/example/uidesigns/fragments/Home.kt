@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
@@ -23,6 +24,8 @@ import com.example.uidesigns.adapter.RecyclerViewAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.FillUpInspectionActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -90,7 +93,6 @@ class Home : Fragment(),AdapterListener {
             TaskList(1,data),
             TaskList(2,data2)
         )
-
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -174,7 +176,7 @@ class Home : Fragment(),AdapterListener {
         save.setOnClickListener {
 
             //checking for stuff
-            if(editDate.text.isNullOrEmpty()){
+            if(editDate.text.isNullOrEmpty() || buttonDist.text.isNullOrEmpty() || buttonDist.text=="Select Distributor"){
                 Toast.makeText(requireContext(),"Please fill up date & select a distributor",Toast.LENGTH_SHORT).show()
             }else{
                 confirmationDialog(dialog)
@@ -257,7 +259,8 @@ class Home : Fragment(),AdapterListener {
 
     @SuppressLint("SetTextI18n")
     override fun onCheck(choices: MutableList<String>?) {
-        if (choices==null){
+
+        if (choices.isNullOrEmpty()){
             buttonDist.text = "Select Distributor"
             distChoice.text = "Select Distributor"
         }else{

@@ -24,6 +24,7 @@ class LanguageActivity : AppCompatActivity() {
     private fun toNextActivity(){
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
 }
