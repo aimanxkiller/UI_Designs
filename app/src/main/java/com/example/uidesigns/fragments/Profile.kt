@@ -4,20 +4,16 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Layout
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.example.uidesigns.R
-import kotlin.math.log
 
 
 private const val ARG_PARAM1 = "param1"
@@ -63,7 +59,6 @@ class Profile : Fragment() {
         //giving dialog the layout
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
         val dialog = Dialog(requireContext())
-
         dialog.setContentView(dialogBinding)
 
         dialog.setCancelable(false)
@@ -85,7 +80,13 @@ class Profile : Fragment() {
                 Toast.makeText(requireContext(),"User clicked logout",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(),"User switched language",Toast.LENGTH_SHORT).show()
-
+                if("Arabic" in languageCurrent.text){
+                    languageCurrent.text = "Switch to English"
+                    dialog.dismiss()
+                }else{
+                    languageCurrent.text = "Switch to Arabic"
+                    dialog.dismiss()
+                }
             }
         }
         dialog.show()
