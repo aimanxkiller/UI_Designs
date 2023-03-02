@@ -33,9 +33,6 @@ class RecyclerViewAdapterHistory: RecyclerView.Adapter<RecyclerViewAdapterHistor
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-
-
         holder.bind(items,position)
     }
 

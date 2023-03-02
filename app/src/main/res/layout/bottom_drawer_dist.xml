@@ -37,7 +37,9 @@
         android:orientation="vertical"
         app:backgroundTint="@null">
         <TextView
+            android:id="@+id/selectionDist"
             android:layout_width="match_parent"
+            android:paddingEnd="25dp"
             android:layout_marginVertical="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -54,6 +56,7 @@
             android:src="@drawable/line_solid" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_distributor"
             android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

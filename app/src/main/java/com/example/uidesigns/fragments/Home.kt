@@ -1,15 +1,18 @@
 package com.example.uidesigns.fragments
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -18,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.adapter.AdapterListener
 import com.example.uidesigns.adapter.RecyclerViewAdapter
-import com.example.uidesigns.adapter.SpinnerAdapterCheckbox
+import com.example.uidesigns.adapter.RecyclerViewAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.FillUpInspectionActivity
@@ -38,14 +41,19 @@ private const val ARG_PARAM2 = "param2"
 class Home : Fragment(),AdapterListener {
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var recyclerViewAdapter:RecyclerViewAdapter
-    lateinit var dataParent:ArrayList<TaskList>
+    private lateinit var recyclerViewAdapter:RecyclerViewAdapter
+    private lateinit var recyclerViewAdapter2:RecyclerViewAdapterCheckbox
+    private lateinit var dataParent:ArrayList<TaskList>
+    private lateinit var distChoice:TextView
+    private lateinit var dialogDistChoice:Dialog
+
     private lateinit var data:ArrayList<TaskModel>
     private lateinit var data2:ArrayList<TaskModel>
     private lateinit var editDate:EditText
     private lateinit var buttonDist:Button
     private lateinit var save:Button
     private var date:LocalDate?=null
+    private lateinit var x:List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +70,6 @@ class Home : Fragment(),AdapterListener {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_home)
-
         val bottomSheet:Button = view.findViewById(R.id.buttonSetNewSchedule)
 
         //Test Data
@@ -89,14 +96,12 @@ class Home : Fragment(),AdapterListener {
             TaskList(2,data2)
         )
 
-        //Launching recyclerview
-        lifecycleScope.launch(Dispatchers.IO){
-            recyclerView.apply {
-                layoutManager = LinearLayoutManager(requireContext())
-                recyclerViewAdapter = RecyclerViewAdapter(this@Home)
-                adapter = recyclerViewAdapter
-                recyclerViewAdapter.getData(dataParent)
-            }
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            recyclerViewAdapter = RecyclerViewAdapter(this@Home)
+            adapter = recyclerViewAdapter
+            recyclerViewAdapter.getData(dataParent)
         }
 
         //Button for setting new schedule
@@ -123,14 +128,14 @@ class Home : Fragment(),AdapterListener {
             showDatePickerDialog()
         }
 
-        val x:List<String> = listOf(
+        x = listOf(
             "Distributor 1","Distributor 2","Distributor 3",
             "Distributor 4","Distributor 5","Distributor 6"
         )
 
         //open new dialogDrawer
         buttonDist.setOnClickListener {
-            distributorDialog()
+            distributorDialog(x)
         }
 
         saveButton()
@@ -143,16 +148,30 @@ class Home : Fragment(),AdapterListener {
 
     }
 
-    private fun distributorDialog(){
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottom_drawer_dist)
 
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-        dialog.window?.setGravity(Gravity.BOTTOM)
-        dialog.show()
+    //showing distributor list dialog selection
+    private fun distributorDialog(x: List<String>) {
+        dialogDistChoice = Dialog(requireContext())
+        dialogDistChoice.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogDistChoice.setContentView(R.layout.bottom_drawer_dist)
+        dialogDistChoice.setCancelable(false)
+
+        //things inside dialogDistChoice
+        val recyclerView:RecyclerView = dialogDistChoice.findViewById(R.id.recycler_distributor)
+        distChoice = dialogDistChoice.findViewById(R.id.selectionDist)
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            recyclerViewAdapter2 = RecyclerViewAdapterCheckbox(this@Home)
+            adapter = recyclerViewAdapter2
+            recyclerViewAdapter2.getData(x)
+        }
+
+        dialogDistChoice.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialogDistChoice.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogDistChoice.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        dialogDistChoice.window?.setGravity(Gravity.BOTTOM)
+        dialogDistChoice.show()
     }
 
 
@@ -171,6 +190,7 @@ class Home : Fragment(),AdapterListener {
     }
 
     //confirmDialog
+    @SuppressLint("InflateParams")
     private fun confirmationDialog() {
 
         //show confirmation dialog
@@ -234,9 +254,25 @@ class Home : Fragment(),AdapterListener {
 
     override fun onClicked(data:TaskModel) {
         //set to go to Fill Up Inspection Activity
-        val Intent = Intent(requireActivity(),FillUpInspectionActivity::class.java)
-        Intent.putExtra("Name",data.task_title)
-        startActivity(Intent)
+        val intent = Intent(requireActivity(),FillUpInspectionActivity::class.java)
+        intent.putExtra("Name",data.task_title)
+        startActivity(intent)
+    }
+
+    override fun onCheck(choices: MutableList<String>?) {
+        if (choices==null){
+            buttonDist.text = "Select Distributor"
+            distChoice.text = "Select Distributor"
+        }else{
+            buttonDist.text = choices.toString().replace("[","").replace("]","")
+            distChoice.text = choices.toString().replace("[","").replace("]","")
+        }
+
+    }
+
+    override fun distDone() {
+        //closing dist
+        dialogDistChoice.dismiss()
     }
 
 }

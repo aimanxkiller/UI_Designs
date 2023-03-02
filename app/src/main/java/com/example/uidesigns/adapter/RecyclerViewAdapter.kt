@@ -13,6 +13,8 @@ import com.example.uidesigns.model.TaskModel
 
 interface AdapterListener{
     fun onClicked(index: TaskModel)
+    fun onCheck(choices: MutableList<String>?)
+    fun distDone()
 }
 
 class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
