@@ -14,7 +14,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
@@ -24,8 +23,6 @@ import com.example.uidesigns.adapter.RecyclerViewAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.FillUpInspectionActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -36,6 +33,7 @@ import java.util.Calendar
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+@Suppress("NAME_SHADOWING")
 class Home : Fragment(),AdapterListener {
     private var param1: String? = null
     private var param2: String? = null
@@ -250,10 +248,12 @@ class Home : Fragment(),AdapterListener {
         datePickerDialog.show()
     }
 
-    override fun onClicked(data:TaskModel) {
+
+    //Listeners actions
+    override fun onClicked(index:TaskModel) {
         //set to go to Fill Up Inspection Activity
         val intent = Intent(requireActivity(),FillUpInspectionActivity::class.java)
-        intent.putExtra("Name",data.task_title)
+        intent.putExtra("Name",index.task_title)
         startActivity(intent)
     }
 

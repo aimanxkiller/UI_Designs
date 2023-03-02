@@ -89,7 +89,6 @@ class Profile : Fragment() {
                 val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
                 this.width = width - (4 * margin)
             }
-
             window.attributes = layoutParams
         }
 

@@ -1,18 +1,16 @@
 package com.example.uidesigns.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.adapter.RecyclerViewAdapterHistory
 import com.example.uidesigns.model.TaskModel
-import com.example.uidesigns.model.TaskList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

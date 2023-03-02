@@ -1,6 +1,5 @@
 package com.example.uidesigns.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,10 +48,10 @@ class RecyclerViewAdapterCheckbox(private val listener: AdapterListener): Recycl
         //add or remove values when check or uncheck
         checkBox.setOnCheckedChangeListener { _ , isChecked ->
             if(isChecked){
-                choices?.add(items[position])
+                choices.add(items[position])
                 listener.onCheck(choices)
             }else{
-                choices?.remove(items[position])
+                choices.remove(items[position])
                 listener.onCheck(choices)
             }
         }

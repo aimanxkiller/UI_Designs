@@ -1,12 +1,9 @@
 package com.example.uidesigns.fragments
 
-import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +13,6 @@ import com.example.uidesigns.adapter.RecyclerViewAdapterCalendar
 import com.example.uidesigns.model.TaskModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,7 +40,6 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_calendar, container, false)
-        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_calendar)
 
 
