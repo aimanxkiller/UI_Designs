@@ -161,6 +161,7 @@
                 android:src="@drawable/line_2" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp">
@@ -175,7 +176,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/language_text_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
