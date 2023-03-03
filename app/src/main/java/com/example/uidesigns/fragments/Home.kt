@@ -73,13 +73,13 @@ class Home : Fragment(),AdapterListener {
             TaskModel("Task 1",3),
             TaskModel("Task 2",2),
             TaskModel("Task 3",1),
-            TaskModel("Task 10",1),
+            TaskModel("Task 10",3),
             TaskModel("Task 11",1),
         )
         data2 = arrayListOf(
             TaskModel("Task 4",3),
             TaskModel("Task 5",2),
-            TaskModel("Task 6",3),
+            TaskModel("Task 6",1),
             TaskModel("Task 7",3),
             TaskModel("Task 8",1),
             TaskModel("Task 9",2),

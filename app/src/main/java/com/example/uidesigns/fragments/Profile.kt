@@ -81,17 +81,7 @@ class Profile : Fragment() {
             Toast.makeText(requireContext(),"Pressed Save",Toast.LENGTH_SHORT).show()
         }
 
-        //custom margin
-        dialog.window?.let { window ->
-            val layoutParams = window.attributes.apply {
-                // Set the width to match parent and add a horizontal margin of 20dp
-                val width = Resources.getSystem().displayMetrics.widthPixels
-                val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
-                this.width = width - (4 * margin)
-            }
-            window.attributes = layoutParams
-        }
-
+        dialogLayout(dialog)
         dialog.show()
     }
 
@@ -106,24 +96,12 @@ class Profile : Fragment() {
 
         val save:Button = dialog.findViewById(R.id.dialog_button_save_address)
 
-        //custom margin
-        dialog.window?.let { window ->
-            val layoutParams = window.attributes.apply {
-                // Set the width to match parent and add a horizontal margin of 20dp
-                val width = Resources.getSystem().displayMetrics.widthPixels
-                val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
-                this.width = width - (4 * margin)
-            }
-
-            window.attributes = layoutParams
-        }
+        dialogLayout(dialog)
 
         save.setOnClickListener {
             Toast.makeText(requireContext(),"Pressed Save",Toast.LENGTH_SHORT).show()
         }
-
         dialog.show()
-
     }
 
     @SuppressLint("InflateParams", "SetTextI18n")
@@ -141,17 +119,7 @@ class Profile : Fragment() {
         val content:TextView = dialog.findViewById(R.id.dialog_content_custom)
         val title:TextView = dialog.findViewById(R.id.dialog_title_custom)
 
-        //custom margin
-        dialog.window?.let { window ->
-            val layoutParams = window.attributes.apply {
-                // Set the width to match parent and add a horizontal margin of 20dp
-                val width = Resources.getSystem().displayMetrics.widthPixels
-                val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
-                this.width = width - (4 * margin)
-            }
-
-            window.attributes = layoutParams
-        }
+        dialogLayout(dialog)
 
         title.text = message
         content.visibility = View.GONE
@@ -174,7 +142,21 @@ class Profile : Fragment() {
             }
         }
         dialog.show()
+    }
 
+    //Custom dialog layout margin
+    private fun dialogLayout(dialog:Dialog){
+        //custom margin
+        dialog.window?.let { window ->
+            val layoutParams = window.attributes.apply {
+                // Set the width to match parent and add a horizontal margin of 20dp
+                val width = Resources.getSystem().displayMetrics.widthPixels
+                val margin = resources.getDimensionPixelSize(R.dimen.horizontal_padding)
+                this.width = width - (4 * margin)
+            }
+
+            window.attributes = layoutParams
+        }
     }
 
 }
