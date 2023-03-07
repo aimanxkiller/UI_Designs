@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ContentDescription"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/off_white"
@@ -24,7 +25,8 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="5dp"
-            android:src="@drawable/icon_arrow_left" />
+            android:src="@drawable/icon_arrow_left"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,11 +143,36 @@
                         </RadioGroup>
 
                         <ImageView
+                            android:id="@+id/upload_icon_1"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="30dp"
                             android:src="@drawable/icon_upload" />
+
+                        <TextView
+                            android:id="@+id/upload_name_1"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Placeholder"
+                            android:layout_weight="1"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_gravity="center_vertical"/>
+                        <ImageView
+                            android:id="@+id/upload_cancel_1"
+                            android:layout_weight="0"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/icon_cross"
+                            android:visibility="gone"
+                            />
+
                     </LinearLayout>
 
                     <EditText
@@ -208,11 +235,34 @@
                         </RadioGroup>
 
                         <ImageView
+                            android:id="@+id/upload_icon_2"
                             android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_height="33dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="30dp"
                             android:src="@drawable/icon_upload" />
+                        <TextView
+                            android:id="@+id/upload_name_2"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Placeholder"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_weight="1"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center_vertical"/>
+                        <ImageView
+                            android:id="@+id/upload_cancel_2"
+                            android:layout_weight="0"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/icon_cross"
+                            android:visibility="gone"
+                            />
                     </LinearLayout>
 
                     <EditText
@@ -275,11 +325,35 @@
                         </RadioGroup>
 
                         <ImageView
+                            android:id="@+id/upload_icon_3"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="30dp"
                             android:src="@drawable/icon_upload" />
+
+                        <TextView
+                            android:id="@+id/upload_name_3"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Placeholder"
+                            android:layout_weight="1"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center_vertical"/>
+                        <ImageView
+                            android:id="@+id/upload_cancel_3"
+                            android:layout_weight="0"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:src="@drawable/icon_cross"
+                            android:visibility="gone"
+                            />
                     </LinearLayout>
 
                     <EditText
@@ -295,7 +369,6 @@
                         android:textColorHint="@color/greyed_out"
                         android:textSize="14sp"
                         app:backgroundTint="@null" />
-
 
                 </LinearLayout>
 

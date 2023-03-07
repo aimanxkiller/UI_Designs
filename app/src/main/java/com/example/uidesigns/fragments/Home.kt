@@ -86,6 +86,8 @@ class Home : Fragment(),AdapterListener {
         )
         data.add(data2[0])
         data2.removeAt(0)
+        data2.shuffle()
+        data.shuffle()
 
         dataParent = arrayListOf(
             TaskList(1,data),
