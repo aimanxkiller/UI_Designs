@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding:ActivityLoginBinding
 
     companion object{
-        private const val PERMISSIONS_REQUEST_CODE = 10
+        private const val PERMISSIONS_REQUEST_CODE = 52
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,26 +28,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //only camera req needed for real dev with android 11+
     private fun requestPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(
                     Manifest.permission.CAMERA,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ),
                 PERMISSIONS_REQUEST_CODE
             )
