@@ -3,12 +3,15 @@ package com.example.uidesigns.ui
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
@@ -19,10 +22,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.uidesigns.R
 import com.example.uidesigns.databinding.ActivityFillUpInspectionBinding
+import java.io.IOException
 
+@Suppress("DEPRECATION")
 class FillUpInspectionActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityFillUpInspectionBinding
+
+    companion object{
+        private const val CAMERA_1 = 1
+        private const val CAMERA_2 = 2
+        private const val CAMERA_3 = 3
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,32 +77,60 @@ class FillUpInspectionActivity : AppCompatActivity() {
     }
 
     private fun setupUpload() {
+        binding.uploadIcon1.setOnClickListener {
+            optionsSel(1)
+        }
+        binding.uploadIcon2.setOnClickListener {
+            optionsSel(2)
+        }
+        binding.uploadIcon3.setOnClickListener {
+            optionsSel(3)
+        }
+    }
+
+    private fun optionsSel(num:Int){
         val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Choose your profile picture")
-
-        binding.uploadIcon1.setOnClickListener {
-            builder.setItems(options) { dialog, item ->
-                when {
-                    options[item] == "Take Photo" -> {
-                        //take pic here
-                    }
-                    options[item] == "Choose from Gallery" -> {
-                        pickImage1.launch("image/*")
-                    }
-                    options[item] == "Cancel" -> {
-                        dialog.dismiss()
+        builder.setItems(options) { dialog, item ->
+            when {
+                options[item] == "Take Photo" -> {
+                    //take pic here
+                    when(num){
+                        1->{
+                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                            startActivityForResult(intent, CAMERA_1)
+                        }
+                        2->{
+                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                            startActivityForResult(intent, CAMERA_2)
+                        }
+                        3->{
+                            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                            startActivityForResult(intent, CAMERA_3)
+                        }
                     }
                 }
+                options[item] == "Choose from Gallery" -> {
+                    //take gallery here
+                    when(num){
+                        1->{
+                            pickImage1.launch("image/*")
+                        }
+                        2->{
+                            pickImage2.launch("image/*")
+                        }
+                        3->{
+                            pickImage3.launch("image/*")
+                        }
+                    }
+                }
+                options[item] == "Cancel" -> {
+                    dialog.dismiss()
+                }
             }
-            builder.show()
         }
-        binding.uploadIcon2.setOnClickListener {
-            pickImage2.launch("image/*")
-        }
-        binding.uploadIcon3.setOnClickListener {
-            pickImage3.launch("image/*")
-        }
+        builder.show()
     }
 
     //Placeholder just for layout
@@ -197,6 +236,61 @@ class FillUpInspectionActivity : AppCompatActivity() {
     }
 
     //imageCapture
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CAMERA_1){
+            if (data!=null){
+                try {
+                    // Get the selected image bitmap from the URI using the content resolver
+                    val imageCapture02 = data.extras?.get("data") as Bitmap
+
+                    //change the icon etc
+                    binding.uploadIcon1.setImageResource(R.drawable.icon_upload_red)
+                    binding.uploadName1.visibility = View.VISIBLE
+                    binding.uploadName1.text = "imageCapture01"
+                    binding.uploadCancel1.visibility = View.VISIBLE
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        else if(requestCode == CAMERA_2){
+            if (data!=null){
+                try {
+                    // Get the selected image bitmap from the URI using the content resolver
+                    val imageCapture01 = data.extras?.get("data") as Bitmap
+
+                    //change the icon etc
+                    binding.uploadIcon2.setImageResource(R.drawable.icon_upload_red)
+                    binding.uploadName2.visibility = View.VISIBLE
+                    binding.uploadName2.text = "imageCapture02"
+                    binding.uploadCancel2.visibility = View.VISIBLE
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        else if(requestCode == CAMERA_3){
+            if (data!=null){
+                try {
+                    // Get the selected image bitmap from the URI using the content resolver
+                    val imageCapture03 = data.extras?.get("data") as Bitmap
+
+                    //change the icon etc
+                    binding.uploadIcon3.setImageResource(R.drawable.icon_upload_red)
+                    binding.uploadName3.visibility = View.VISIBLE
+                    binding.uploadName3.text = "imageCapture03"
+                    binding.uploadCancel3.visibility = View.VISIBLE
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     //get Filename func
     private fun getFileName(uri: Uri): String? {
