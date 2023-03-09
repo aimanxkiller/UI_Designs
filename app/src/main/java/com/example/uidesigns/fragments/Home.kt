@@ -150,7 +150,6 @@ class Home : Fragment(),AdapterListener {
         dialogDistChoice = Dialog(requireContext())
         dialogDistChoice.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogDistChoice.setContentView(R.layout.bottom_drawer_dist)
-        dialogDistChoice.setCancelable(false)
 
         //things inside dialogDistChoice
         val recyclerView:RecyclerView = dialogDistChoice.findViewById(R.id.recycler_distributor)
