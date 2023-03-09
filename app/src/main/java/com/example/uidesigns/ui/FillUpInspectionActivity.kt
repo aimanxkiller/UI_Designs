@@ -88,10 +88,11 @@ class FillUpInspectionActivity : AppCompatActivity() {
         }
     }
 
+    //Giving user options to select pic from gallery or camera
     private fun optionsSel(num:Int){
         val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Choose your profile picture")
+        builder.setTitle("Choose your picture")
         builder.setItems(options) { dialog, item ->
             when {
                 options[item] == "Take Photo" -> {
@@ -175,7 +176,7 @@ class FillUpInspectionActivity : AppCompatActivity() {
             Toast.makeText(this,"Pressed Yes",Toast.LENGTH_SHORT).show()
         }
 
-        //inflate/show dialog
+        //inflate show dialog
         myDialog.show()
     }
 
@@ -301,7 +302,7 @@ class FillUpInspectionActivity : AppCompatActivity() {
             if (it.moveToFirst()) {
                 val fileNameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
                 if (fileNameIndex >= 0) {
-                    val fileName = it.getString(fileNameIndex)
+                    //Get filename here
                     name = it.getString(fileNameIndex)
                 } else {
                     Log.e("TAG", "Column not found: ${OpenableColumns.DISPLAY_NAME}")
