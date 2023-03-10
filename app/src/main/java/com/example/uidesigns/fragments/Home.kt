@@ -22,6 +22,7 @@ import com.example.uidesigns.adapter.RecyclerViewAdapter
 import com.example.uidesigns.adapter.RecyclerViewAdapterCheckbox
 import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
+import com.example.uidesigns.ui.BottomSheet
 import com.example.uidesigns.ui.FillUpInspectionActivity
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -34,7 +35,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 @Suppress("NAME_SHADOWING")
-class Home : Fragment(),AdapterListener {
+class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerViewAdapter:RecyclerViewAdapter
@@ -103,13 +104,18 @@ class Home : Fragment(),AdapterListener {
 
         //Button for setting new schedule
         bottomSheet.setOnClickListener {
-            showDialog()
+            val bottomSheetDialogFragment = BottomSheet.newInstance()
+            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
+            bottomSheetDialogFragment.attachListener(this@Home)
+
+        //    showDialog()
         }
 
         // Inflate the layout for this fragment
         return view
     }
 
+    //old show dialog
     private fun showDialog(){
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -274,6 +280,14 @@ class Home : Fragment(),AdapterListener {
     override fun distDone() {
         //closing dist
         dialogDistChoice.dismiss()
+    }
+
+    override fun onClickDist() {
+        x = listOf(
+            "Distributor 1","Distributor 2","Distributor 3",
+            "Distributor 4","Distributor 5","Distributor 6"
+        )
+        distributorDialog(x)
     }
 
 }
