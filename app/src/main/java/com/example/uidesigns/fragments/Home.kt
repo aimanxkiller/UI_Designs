@@ -242,7 +242,7 @@ class Home : Fragment(),AdapterListener {
             val inputDate = inputDateFormat.parse(selectedDate)
 
             val outputDateFormat = SimpleDateFormat("MMMM dd, yyyy",Locale.US)
-            editDate.setText(outputDateFormat.format(inputDate))
+            editDate.setText(outputDateFormat.format(inputDate as Date))
         }, year, month, day)
 
         // show the DatePickerDialog
