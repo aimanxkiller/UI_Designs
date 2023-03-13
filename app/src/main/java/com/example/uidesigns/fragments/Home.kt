@@ -43,6 +43,8 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
     private lateinit var dataParent:ArrayList<TaskList>
     private lateinit var distChoice:TextView
     private lateinit var dialogDistChoice:Dialog
+    private lateinit var bottomSheetDialogFragment:BottomSheet
+    private lateinit var bottomSheet:Button
 
     private lateinit var data:ArrayList<TaskModel>
     private lateinit var data2:ArrayList<TaskModel>
@@ -67,7 +69,7 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_home)
-        val bottomSheet:Button = view.findViewById(R.id.buttonSetNewSchedule)
+        bottomSheet = view.findViewById(R.id.buttonSetNewSchedule)
 
         //Test Data
         data = arrayListOf(
@@ -104,55 +106,18 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
         //Button for setting new schedule
         bottomSheet.setOnClickListener {
-            val bottomSheetDialogFragment = BottomSheet.newInstance()
+            bottomSheetDialogFragment = BottomSheet.newInstance()
             bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
             bottomSheetDialogFragment.attachListener(this@Home)
-
-        //    showDialog()
         }
 
         // Inflate the layout for this fragment
         return view
     }
 
-    //old show dialog
-    private fun showDialog(){
-        val dialog = Dialog(requireContext())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottom_drawer)
-
-        //stuff in dialog drawer bottom
-        editDate = dialog.findViewById(R.id.date_selection)
-        buttonDist = dialog.findViewById(R.id.spinner_drawer)
-        save = dialog.findViewById(R.id.buttonSave)
-
-        //User inputs date here
-        editDate.setOnClickListener {
-            showDatePickerDialog()
-        }
-
-        x = listOf(
-            "Distributor 1","Distributor 2","Distributor 3",
-            "Distributor 4","Distributor 5","Distributor 6"
-        )
-
-        //open new dialogDrawer
-        buttonDist.setOnClickListener {
-            distributorDialog(x)
-        }
-
-        saveButton(dialog)
-
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-        dialog.window?.setGravity(Gravity.BOTTOM)
-        dialog.show()
-
-    }
-
     //showing distributor list dialog selection
     private fun distributorDialog(x: List<String>) {
+
         dialogDistChoice = Dialog(requireContext())
         dialogDistChoice.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogDistChoice.setContentView(R.layout.bottom_drawer_dist)
@@ -176,22 +141,21 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
     }
 
     //save settings
-    private fun saveButton(dialog: Dialog) {
+    private fun saveButton() {
 
         save.setOnClickListener {
-
             //checking for stuff
             if(editDate.text.isNullOrEmpty() || buttonDist.text.isNullOrEmpty() || buttonDist.text=="Select Distributor"){
                 Toast.makeText(requireContext(),"Please fill up date & select a distributor",Toast.LENGTH_SHORT).show()
             }else{
-                confirmationDialog(dialog)
+                confirmationDialog()
             }
         }
     }
 
     //confirmDialog
     @SuppressLint("InflateParams")
-    private fun confirmationDialog(dialogParent: Dialog) {
+    private fun confirmationDialog() {
 
         //show confirmation dialog
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
@@ -214,7 +178,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
             parseDate()
             Log.e("Test2",date.toString())
             myDialog.dismiss()
-            dialogParent.dismiss()
             Toast.makeText(requireContext(),"Saved Task",Toast.LENGTH_SHORT).show()
         }
     }
@@ -255,7 +218,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
         datePickerDialog.show()
     }
 
-
     //Listeners actions
     override fun onClicked(index:TaskModel) {
         //set to go to Fill Up Inspection Activity
@@ -282,12 +244,28 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
         dialogDistChoice.dismiss()
     }
 
-    override fun onClickDist() {
+    //bottom sheet dialog new
+    override fun onClickDist(btn: Button) {
+
+
+        buttonDist = btn
+
         x = listOf(
             "Distributor 1","Distributor 2","Distributor 3",
             "Distributor 4","Distributor 5","Distributor 6"
         )
         distributorDialog(x)
+    }
+
+    override fun dateSel(btn: EditText) {
+        editDate = btn
+
+        showDatePickerDialog()
+    }
+
+    override fun saveBtn(buttonSave: Button) {
+        save = buttonSave
+        saveButton()
     }
 
 }

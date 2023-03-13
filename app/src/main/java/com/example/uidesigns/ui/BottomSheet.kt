@@ -14,7 +14,9 @@ class BottomSheet: BottomSheetDialogFragment() {
     private lateinit var listener:BottomSheetListener
     // Listener interface
     interface BottomSheetListener {
-        fun onClickDist()
+        fun onClickDist(buttonDist: Button)
+        fun dateSel(buttonDate: EditText)
+        fun saveBtn(buttonSave: Button)
     }
 
     fun attachListener(x: BottomSheetListener) {
@@ -31,23 +33,29 @@ class BottomSheet: BottomSheetDialogFragment() {
 
         // Setup your views and listeners here
         // For example, you can set up a click listener on a button:
-        val button = view.findViewById<Button>(R.id.buttonSave)
+        val buttonSave = view.findViewById<Button>(R.id.buttonSave)
         val buttonDist = view.findViewById<Button>(R.id.spinner_drawer)
         val buttonDate = view.findViewById<EditText>(R.id.date_selection)
 
-        button.setOnClickListener {
+        buttonSave.setOnClickListener {
             // Handle button click event
+            listener.saveBtn(buttonSave)
             dismiss() // Dismiss the dialog
         }
 
         buttonDist.setOnClickListener {
-            listener.onClickDist()
+            listener.onClickDist(buttonDist)
+        }
+
+        buttonDate.setOnClickListener{
+            listener.dateSel(buttonDate)
         }
     }
 
     companion object {
         fun newInstance(): BottomSheet = BottomSheet()
     }
+
 
 
 }
