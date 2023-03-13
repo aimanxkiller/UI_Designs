@@ -24,6 +24,7 @@ import com.example.uidesigns.model.TaskList
 import com.example.uidesigns.model.TaskModel
 import com.example.uidesigns.ui.BottomSheet
 import com.example.uidesigns.ui.FillUpInspectionActivity
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -43,7 +44,7 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
     private lateinit var dataParent:ArrayList<TaskList>
     private lateinit var distChoice:TextView
     private lateinit var dialogDistChoice:Dialog
-    private lateinit var bottomSheetDialogFragment:BottomSheet
+    private lateinit var bottomSheetDialogFragment:BottomSheetDialogFragment
     private lateinit var bottomSheet:Button
 
     private lateinit var data:ArrayList<TaskModel>
@@ -106,10 +107,16 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
         //Button for setting new schedule
         bottomSheet.setOnClickListener {
-            bottomSheetDialogFragment = BottomSheet.newInstance()
-            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
-            bottomSheetDialogFragment.attachListener(this@Home)
+            bottomSheetDialogFragment = BottomSheet().apply {
+                attachListener(this@Home)
+            }
+            bottomSheetDialogFragment.show(requireActivity().supportFragmentManager,"Tag")
+//            bottomSheetDialogFragment = BottomSheet.newInstance()
+//            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
+//            bottomSheetDialogFragment.attachListener(this@Home)
         }
+
+
 
         // Inflate the layout for this fragment
         return view
