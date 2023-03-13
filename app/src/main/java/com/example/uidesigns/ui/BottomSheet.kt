@@ -31,32 +31,6 @@ class BottomSheet: BottomSheetDialogFragment() {
         this.listener = x
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            setWhiteNavigationBar(dialog)
-        }
-        return dialog
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private fun setWhiteNavigationBar(dialog: Dialog) {
-        val window = dialog.window
-        if (window != null) {
-            val metrics = DisplayMetrics()
-            window.windowManager.defaultDisplay.getMetrics(metrics)
-            val dimDrawable = GradientDrawable()
-            // ...customize your dim effect here
-            val navigationBarDrawable = GradientDrawable()
-            navigationBarDrawable.shape = GradientDrawable.RECTANGLE
-            navigationBarDrawable.setColor(Color.WHITE)
-            val layers = arrayOf<Drawable>(dimDrawable, navigationBarDrawable)
-            val windowBackground = LayerDrawable(layers)
-            windowBackground.setLayerInsetTop(1, metrics.heightPixels)
-            window.setBackgroundDrawable(windowBackground)
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.bottom_drawer, container, false)
