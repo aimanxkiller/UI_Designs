@@ -13,10 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uidesigns.R
 import com.example.uidesigns.adapter.RecyclerViewAdapterCalendar
+import com.example.uidesigns.databinding.CalendarDayLayoutBinding
+import com.example.uidesigns.databinding.FragmentCalendarBinding
 import com.example.uidesigns.model.TaskModel
+import com.kizitonwose.calendar.core.CalendarDay
+import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
+import com.kizitonwose.calendar.view.MonthDayBinder
+import com.kizitonwose.calendar.view.ViewContainer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalField
+import java.time.temporal.WeekFields
 import java.util.*
 import java.util.Calendar
 
@@ -32,6 +44,16 @@ class Calendar : Fragment() {
 
     private lateinit var data:ArrayList<TaskModel>
     private lateinit var recyclerViewAdapter: RecyclerViewAdapterCalendar
+    private lateinit var binding:FragmentCalendarBinding
+
+    private var selectedDate: LocalDate? = null
+    private val today = LocalDate.now()
+    private val fieldUS: TemporalField = WeekFields.of(Locale.US).dayOfWeek()
+    private val startDay = today.with(fieldUS, 1).minusDays(1)
+    private val lastDay = today.with(fieldUS, 7).plusDays(1)
+    private val titleFormatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.US)
+    private val serverFormatter by lazy { DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US) }
+    private val noInspectionFormatter by lazy { DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.US) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +67,11 @@ class Calendar : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_calendar, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_calendar)
-        val curMonth = view.findViewById<TextView>(R.id.textCurrentMonth)
-        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
+        binding = FragmentCalendarBinding.inflate(inflater, container, false)
+
+        val recyclerView = binding.recyclerCalendar
+        val curMonth = binding.textCurrentMonth
+        val calendarView = binding.calendarView
 
         setCurrentMonth(curMonth)
 
@@ -69,8 +92,44 @@ class Calendar : Fragment() {
             }
         }
 
+
+        //start
+        val minusMonth = if (startDay.monthValue == YearMonth.now().monthValue) 0 else 1
+        val plusMonth = if (lastDay.monthValue == YearMonth.now().monthValue) 0 else 1
+
+        val daysOfWeek = daysOfWeekFromLocale()
+
+        val currentMonth = YearMonth.now()
+        calendarView.apply {
+            setup(currentMonth.minusMonths(minusMonth.toLong()), currentMonth.plusMonths(plusMonth.toLong()), daysOfWeek.first())
+            scrollToMonth(currentMonth)
+        }
+
+        class DayViewContainer(view: View) : ViewContainer(view) {
+            val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
+        }
+
+
+
+        calendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
+            // Called only when a new container is needed.
+            override fun create(view: View) = DayViewContainer(view)
+
+            // Called every time we need to reuse a container.
+            override fun bind(container: DayViewContainer, data: CalendarDay) {
+                container.textView.text = data.date.dayOfMonth.toString()
+            }
+        }
+
+        
+        val startMonth = currentMonth.minusMonths(100)  // Adjust as needed
+        val endMonth = currentMonth.plusMonths(100)  // Adjust as needed
+        val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
+        calendarView.setup(startMonth, endMonth, firstDayOfWeek)
+        calendarView.scrollToMonth(currentMonth)
+
         // Inflate the layout for this fragment
-        return view
+        return binding.root
     }
 
     private fun setCurrentMonth(curMonth: TextView) {
@@ -83,6 +142,19 @@ class Calendar : Fragment() {
         val outputDateFormat = SimpleDateFormat("MMMM yyyy",Locale.US)
 
         curMonth.text = outputDateFormat.format(inputDateFormat.parse(x))
+    }
+
+    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+        val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+        var daysOfWeek = DayOfWeek.values()
+        // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.
+        // Only necessary if firstDayOfWeek != DayOfWeek.MONDAY which has ordinal 0.
+        if (firstDayOfWeek != DayOfWeek.MONDAY) {
+            val rhs = daysOfWeek.sliceArray(firstDayOfWeek.ordinal..daysOfWeek.indices.last)
+            val lhs = daysOfWeek.sliceArray(0 until firstDayOfWeek.ordinal)
+            daysOfWeek = rhs + lhs
+        }
+        return daysOfWeek
     }
 
 }
