@@ -115,9 +115,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 //            bottomSheetDialogFragment.show(parentFragmentManager, bottomSheetDialogFragment.tag)
 //            bottomSheetDialogFragment.attachListener(this@Home)
         }
-
-
-
         // Inflate the layout for this fragment
         return view
     }
@@ -149,7 +146,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
     //save settings
     private fun saveButton() {
-
         save.setOnClickListener {
             //checking for stuff
             if(editDate.text.isNullOrEmpty() || buttonDist.text.isNullOrEmpty() || buttonDist.text=="Select Distributor"){
@@ -163,7 +159,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
     //confirmDialog
     @SuppressLint("InflateParams")
     private fun confirmationDialog() {
-
         //show confirmation dialog
         val dialogBinding = layoutInflater.inflate(R.layout.custom_dialog,null)
         val myDialog = Dialog(requireContext())
@@ -253,10 +248,7 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
     //bottom sheet dialog new
     override fun onClickDist(btn: Button) {
-
-
         buttonDist = btn
-
         x = listOf(
             "Distributor 1","Distributor 2","Distributor 3",
             "Distributor 4","Distributor 5","Distributor 6"
@@ -266,7 +258,6 @@ class Home : Fragment(),AdapterListener,BottomSheet.BottomSheetListener {
 
     override fun dateSel(btn: EditText) {
         editDate = btn
-
         showDatePickerDialog()
     }
 
