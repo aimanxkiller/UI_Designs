@@ -23,7 +23,6 @@ import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -33,7 +32,6 @@ import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalField
 import java.time.temporal.WeekFields
 import java.util.*
-import java.util.Calendar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,8 +70,6 @@ class Calendar : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_calendar)
         val curMonth = view.findViewById<TextView>(R.id.textCurrentMonth)
         val calendarView = view.findViewById<com.kizitonwose.calendar.view.CalendarView>(R.id.calendarView)
-
-        setCurrentMonth(curMonth)
 
         data = arrayListOf(
             TaskModel("Task 1",3),
@@ -193,18 +189,6 @@ class Calendar : Fragment() {
 
         // Inflate the layout for this fragment
         return view
-    }
-
-    private fun setCurrentMonth(curMonth: TextView) {
-        val currentDate = Calendar.getInstance()
-        val year = currentDate.get(Calendar.YEAR)
-        val month = currentDate.get(Calendar.MONTH)
-        val x = "$month $year"
-
-        val inputDateFormat = SimpleDateFormat("M yyyy", Locale.US)
-        val outputDateFormat = SimpleDateFormat("MMMM yyyy",Locale.US)
-
-        curMonth.text = outputDateFormat.format(inputDateFormat.parse(x) as Date)
     }
 
 }
