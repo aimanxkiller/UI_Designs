@@ -68,5 +68,4 @@ dependencies {
 
     // The view calendar library
     implementation 'com.kizitonwose.calendar:view:2.2.0'
-
 }
