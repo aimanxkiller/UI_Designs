@@ -108,8 +108,8 @@ class Calendar : Fragment() {
             init {
                 view.setOnClickListener {
                     // Check the day position as we do not want to select in or out dates.
-
-                    if (day.date == LocalDate.now() || day.date.until(LocalDate.now(), ChronoUnit.DAYS) in -2..4) {
+                    // Adjust as requires to which date to be clickable
+                    if (day.date == LocalDate.now() || day.date.until(LocalDate.now(), ChronoUnit.DAYS) in 0..6) {
                         // Keep a reference to any previous selection
                         // in case we overwrite it and need to reload it.
                         val currentSelection = selectedDate
@@ -174,8 +174,8 @@ class Calendar : Fragment() {
                     //if day is not selected no background
                     }else{
                         container.textView.background = null
-                        //black only for current week centered on current date
-                        if(data.date == LocalDate.now() || data.date.until(LocalDate.now(), ChronoUnit.DAYS) in -2..4){
+                        //highlight color for required dates only
+                        if(data.date == LocalDate.now() || data.date.until(LocalDate.now(), ChronoUnit.DAYS) in 0..6){
                             container.textView.setTextColor(Color.BLACK)
                         }else{
                             //other days greyed
