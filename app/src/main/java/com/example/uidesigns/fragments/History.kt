@@ -50,14 +50,14 @@ class History : Fragment() {
             TaskModel("Task 11",1),
         )
 
-        lifecycleScope.launch(Dispatchers.IO){
+
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 recyclerViewAdapter = RecyclerViewAdapterHistory()
                 adapter = recyclerViewAdapter
                 recyclerViewAdapter.getData(data)
             }
-        }
+
 
         // Inflate the layout for this fragment
         return view
