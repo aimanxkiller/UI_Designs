@@ -74,10 +74,10 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
         val holderTaskTitle = holder.title
         val holderType = holder.type
 
-        var dataholder:TaskModel
+        val dataHolder:TaskModel
 
         if (position < items[0].list.size){
-            dataholder = items[0].list[position]
+            dataHolder = items[0].list[position]
             when(items[0].list[position].type){
                 1->{
                     holderTaskTitle.setTextColor(ContextCompat.getColor(mainHolder.context,R.color.daily_dark))
@@ -99,7 +99,7 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
                 }
             }
         }else{
-            dataholder=items[1].list[(position - items[0].list.size)]
+            dataHolder=items[1].list[(position - items[0].list.size)]
             when(items[1].list[(position - items[0].list.size)].type){
                 1->{
                     holderTaskTitle.setTextColor(ContextCompat.getColor(mainHolder.context,R.color.daily_dark))
@@ -124,14 +124,14 @@ class RecyclerViewAdapter(private val listener: AdapterListener):RecyclerView.Ad
 
         mainHolder.setOnClickListener {
             //Do stuff clicked here
-            listener.onClicked(dataholder)
+            listener.onClicked(dataHolder)
         }
         holder.bind(items,position)
     }
 
     override fun getItemCount(): Int {
-        var counter:Int = 0
-        items.forEachIndexed { index, taskList ->
+        var counter = 0
+        items.forEachIndexed { index, _ ->
             counter += items[index].list.size
         }
         return counter

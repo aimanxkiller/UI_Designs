@@ -108,7 +108,8 @@ class Calendar : Fragment() {
             init {
                 view.setOnClickListener {
                     // Check the day position as we do not want to select in or out dates.
-                    if (day.position == DayPosition.MonthDate) {
+
+                    if (day.date == LocalDate.now() || day.date.until(LocalDate.now(), ChronoUnit.DAYS) in -2..4) {
                         // Keep a reference to any previous selection
                         // in case we overwrite it and need to reload it.
                         val currentSelection = selectedDate
